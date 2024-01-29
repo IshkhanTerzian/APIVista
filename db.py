@@ -59,7 +59,6 @@ class Pricing(Base):
         return f"Game_id: {self.game_id} Year: {self.year} Price: {self.price}"
 
 
-
 def create_engine_and_session(database_url):
     engine = create_engine(database_url)
     Base.metadata.create_all(engine)
@@ -68,25 +67,21 @@ def create_engine_and_session(database_url):
 
 
 def seed_data(session):
-    # Seed Developers
     developer1 = Developer(name="Developer 1")
     developer2 = Developer(name="Developer 2")
     session.add_all([developer1, developer2])
     session.commit()
 
-    # Seed Genres
     genre1 = Genre(name="Action")
     genre2 = Genre(name="Adventure")
     session.add_all([genre1, genre2])
     session.commit()
 
-    # Seed Platforms
     platform1 = Platform(console_name="PlayStation")
     platform2 = Platform(console_name="Xbox")
     session.add_all([platform1, platform2])
     session.commit()
 
-    # Seed Games
     game1 = Game(
         title="Game 1",
         release_date=datetime(2022, 1, 1),
@@ -112,7 +107,6 @@ def seed_data(session):
     session.add_all([game1, game2])
     session.commit()
 
-    # Seed Pricing
     pricing1 = Pricing(game_id=game1.id, year=2022, price=49.99)
     pricing2 = Pricing(game_id=game2.id, year=2022, price=59.99)
     session.add_all([pricing1, pricing2])
