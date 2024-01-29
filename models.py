@@ -5,6 +5,7 @@ Base = declarative_base()
 
 
 class Developer(Base):
+    """Model for Developers table."""
     __tablename__ = "developers"
     id = Column("id", Integer, primary_key=True)
     name = Column("name", String, nullable=False)
@@ -14,6 +15,7 @@ class Developer(Base):
 
 
 class Genre(Base):
+    """Model for Genres table."""
     __tablename__ = "genres"
     id = Column("id", Integer, primary_key=True)
     name = Column("name", String, nullable=False)
@@ -23,6 +25,7 @@ class Genre(Base):
 
 
 class Platform(Base):
+    """Model for Platforms table."""
     __tablename__ = "platforms"
     id = Column("id", Integer, primary_key=True)
     console_name = Column("console_name", String, nullable=False)
@@ -32,6 +35,7 @@ class Platform(Base):
 
 
 class Game(Base):
+    """Model for Games table."""
     __tablename__ = "games"
     id = Column("id", Integer, primary_key=True)
     title = Column("title", String, nullable=False)
@@ -49,6 +53,7 @@ class Game(Base):
 
 
 class Pricing(Base):
+    """Model for Prices table."""
     __tablename__ = "prices"
     game_id = Column("game_id", Integer, ForeignKey("games.id", ondelete="CASCADE"), primary_key=True)
     year = Column("year", Integer, primary_key=True)
