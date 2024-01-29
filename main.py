@@ -1,7 +1,10 @@
 import os
+
 from flask import Flask, jsonify, request
+from models import Developer, Genre, Platform, Game, Pricing
+from db import create_engine_and_session
 from dotenv import load_dotenv
-from db import Developer, Genre, Platform, Game, Pricing, create_engine_and_session, seed_data
+
 
 load_dotenv()
 DATABASE_URL = os.getenv('DATABASE_URL')
