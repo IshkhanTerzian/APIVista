@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask, jsonify, request
-from models import Developer, Genre, Platform, Game, Pricing
+from models import Developer, Genre, Platform, Game, Pricing, Sales
 from db import create_engine_and_session
 from dotenv import load_dotenv
 from datetime import datetime
@@ -487,4 +487,110 @@ def delete_game_pricing(game_id):
 
     return jsonify(message="Successfully deleted pricing information for the Game"), 200
 
+
 # ============================ PRICING END =======================================
+
+
+# ============================ SALES START =======================================
+
+# Getting all Sales information
+@app.route('/api/sales')
+def get_all_sales():
+    all_sales = []
+    results = session.query(Sales).all()
+
+    for sale in results:
+        game = session.query(Game).filter(Game.id == sale.game_id).first()
+
+        if game:
+            all_sales.append({
+                "id": game.id,
+                "title": game.title,
+                "year": sale.year,
+                "digital_sales": sale.digital_sales,
+                "hard_copy_sales": sale.hard_copy_sales
+            })
+
+    return jsonify(sales=all_sales), 200
+
+
+# Get Sales for a single Game
+@app.route('/api/sales/<int:game_id>', methods=['GET'])
+def get_single_game_sales(game_id):
+    year = request.args.get('year')
+    sales = session.query(Sales).filter_by(game_id=game_id, year=year).first()
+
+    if not sales:
+        return jsonify(error="Sales information not found for the specified game and year"), 404
+
+    game = session.query(Game).filter(Game.id == game_id).scalar()
+
+    sales_info = [{
+        "title": game.title,
+        "year": sales.year,
+        "digital_sales": sales.digital_sales,
+        "hard_copy_sales": sales.hard_copy_sales
+    }]
+
+    return jsonify(sales=sales_info), 200
+
+
+# Add Sales for a Game
+@app.route('/api/sales/<int:game_id>', methods=['POST'])
+def add_game_sales(game_id):
+    digital_sales = request.args.get('digital_sales')
+    hard_copy_sales = request.args.get('hard_copy_sales')
+    year = request.args.get('year')
+
+    existing_sales = session.query(Sales).filter_by(game_id=game_id, year=year).first()
+
+    if existing_sales:
+        return jsonify(error="Sales information already exists for the specified game and year"), 409
+
+    game_exists = session.query(Game).filter(Game.id == game_id).scalar()
+
+    if not game_exists:
+        return jsonify(error="Game not found"), 404
+
+    sales = Sales(game_id=game_id, year=year, digital_sales=digital_sales, hard_copy_sales=hard_copy_sales)
+    session.add(sales)
+    session.commit()
+
+    return jsonify(message="Successfully added sales information for the Game"), 200
+
+
+# Update Sales for a Game
+@app.route('/api/sales/<int:game_id>', methods=['PATCH'])
+def update_game_sales_or_year(game_id):
+    new_digital_sales = request.args.get('digital_sales')
+    new_hard_copy_sales = request.args.get('hard_copy_sales')
+    new_year = request.args.get('year')
+
+    sales = session.query(Sales).filter(Sales.game_id == game_id).first()
+
+    if not sales:
+        return jsonify(error="Sales information not found for the specified game and year"), 404
+
+    sales.digital_sales = new_digital_sales
+    sales.hard_copy_sales = new_hard_copy_sales
+    sales.year = new_year
+    session.commit()
+
+    return jsonify(message="Successfully updated sales information for the Game"), 200
+
+
+# Delete Sales for a Game at a specific Year
+@app.route('/api/sales/<int:game_id>', methods=['DELETE'])
+def delete_game_sales(game_id):
+    year = request.args.get('year')
+    sales = session.query(Sales).filter(Sales.game_id == game_id, Sales.year == year).first()
+
+    if not sales:
+        return jsonify(error="Sales information not found for the specified game and year"), 404
+
+    session.delete(sales)
+    session.commit()
+
+    return jsonify(message="Successfully deleted sales information for the Game"), 200
+
+# ============================ SALES END =======================================
