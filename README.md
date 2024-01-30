@@ -19,7 +19,7 @@ APIVista provides a robust API to access and manage data related to video games.
 - **User-Friendly**: Easy-to-use API endpoints for seamless integration into applications and services.
 
 ## UML Diagram
-![UML Diagram](https://github.com/IshkhanTerzian/APIVista/blob/master/APIVistoTables.jpg)
+![UML Diagram](https://github.com/IshkhanTerzian/APIVista/blob/master/APIVistoTables.png)
 
 ## Framework and Dependencies
 

@@ -61,3 +61,13 @@ class Pricing(Base):
 
     def __repr__(self):
         return f"Game_id: {self.game_id} Year: {self.year} Price: {self.price}"
+
+
+class Sales(Base):
+    """Model for Sales table."""
+    __tablename__ = "sales"
+    game_id = Column("game_id", Integer, ForeignKey("games.id", ondelete="CASCADE"), primary_key=True)
+    year = Column("year", Integer, primary_key=True)
+    digital_sales = Column("digital_sales", Integer)
+    hard_copy_sales = Column("hard_copy_sales", Integer)
+
