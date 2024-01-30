@@ -14,9 +14,9 @@ APIVista provides a robust API to access and manage data related to video games.
 
 ## Key Features
 
-Comprehensive Data Access detailed information about video games, including sales, pricing, and more.
-Platform Support Track trends across multiple platforms, including PlayStation and Xbox.
-User-Friendly Easy-to-use API endpoints for seamless integration into applications and services.
+- **Comprehensive Data Access:** Detailed information about video games, including sales, pricing, and more.
+- **Platform Support:** Track trends across multiple platforms, including PlayStation and Xbox.
+- **User-Friendly:** Easy-to-use API endpoints for seamless integration into applications and services.
 
 ## UML Diagram
 ![UML Diagram](https://github.com/IshkhanTerzian/APIVista/blob/master/APIVistoTables.png)
@@ -25,6 +25,10 @@ User-Friendly Easy-to-use API endpoints for seamless integration into applicatio
 
 APIVista is built using the Flask framework and utilizes SQLAlchemy for database operations and its ORM (Object-Relational Mapping) functionality. The application uses PostgreSQL as its database.
 
+## Infrastructure
+
+- **Database:** PostgreSQL deployed on AWS RDS.
+- **API Deployment:** Heroku
 
 ## Getting Started
 
@@ -65,14 +69,21 @@ APIVista is built using the Flask framework and utilizes SQLAlchemy for database
     ```bash
     flask run
     ```
-   
 
-## API Endpoints
+# API Endpoints
 
-### This is a general overview of the all the available endpoints for APIVista,
-## For more comprehensive look, please take a look at the API documentation posted below
+#### To access the APIVista endpoint: 
+[APIVista Endpoint](https://vista-9f3b58de3ca9.herokuapp.com//)
 
+#### For a more comprehensive look at APIVista, please take a look at the documentation:
 
+[Documentation](https://documenter.getpostman.com/view/26250844/2s9YysEN6t)
+
+# Testing with Postman
+
+The API endpoints have been thoroughly tested using [Postman](https://www.postman.com/).
+
+# Overview of end-point routes.
 
 ### Developer Routes
 
