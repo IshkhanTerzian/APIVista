@@ -69,6 +69,11 @@ APIVista is built using the Flask framework and utilizes SQLAlchemy for database
 
 ## API Endpoints
 
+### This is a general overview of the all the available endpoints for APIVista,
+## For more comprehensive look, please take a look at the API documentation posted below
+
+
+
 ### Developer Routes
 
 ```htp
@@ -90,7 +95,7 @@ PATCH /api/genre/{genre_id}      -> Update a genre by ID.
 DELETE /api/genre/{genre_id}     -> Delete a genre by ID.
 ```
 
-### Platform Routes
+### Platforms
 
 ```http
 GET /api/platform                      -> Get all platforms.
@@ -101,7 +106,7 @@ DELETE /api/platform/{platform_id}     -> Delete a platform by ID.
 ```
 
 
-### Game Routes
+### Games
 
 ```http
 GET /api/game                    -> Get all games.
@@ -123,9 +128,9 @@ DELETE /api/pricing/{game_id}       -> Delete pricing information for a game.
 
 ### Sales Routes
 ```http
-GET /api/sales                      -> Getting all Sales information
-GET /api/sales/{game_id}            -> Get Sales for a single Game
-POST /api/sales/{game_id}           -> Add Sales for a Game
-PATCH /api/sales/{game_id}          -> Update Sales for a Game
-DELETE /api/sales/{game_id}         -> Delete Sales for a Game at a specific Year
+GET /api/sales                  -> Getting all Sales information
+GET /api/sales/{game_id}        -> Get Sales for a single Game
+POST /api/sales/{game_id}       -> Add Sales for a Game
+PATCH /api/sales/{game_id}      -> Update Sales for a Game
+DELETE /api/sales/{game_id}     -> Delete Sales for a Game at a specific Year
 ```

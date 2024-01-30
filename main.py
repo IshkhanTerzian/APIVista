@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from datetime import datetime
 
 load_dotenv()
-DATABASE_URL = os.getenv('DATABASE_URL')
+DATABASE_URL = os.getenv('AWS_POSTGRESQL_URL')
 
 session = create_engine_and_session(DATABASE_URL)
 
@@ -593,4 +593,9 @@ def delete_game_sales(game_id):
 
     return jsonify(message="Successfully deleted sales information for the Game"), 200
 
+
 # ============================ SALES END =======================================
+
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port)
