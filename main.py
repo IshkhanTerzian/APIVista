@@ -376,6 +376,7 @@ def update_game(game_id):
     game.img_url = img_url
 
     session.commit()
+    return jsonify(message="Successfully updated the Game."), 200
 
 
 # Delete a Game
