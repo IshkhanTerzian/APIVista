@@ -422,12 +422,15 @@ def get_all_pricing():
 def get_single_game_pricing(game_id):
     year = request.args.get('year')
     pricing = session.query(Pricing).filter_by(game_id=game_id, year=year).first()
+    platform = session.query(Platform).filter(Platform.id == game_id).scalar()
+    game = session.query(Game).filter(Game.id == game_id).scalar()
 
     if not pricing:
         return jsonify(error="Pricing information not found for the specified game and year"), 404
 
     pricing_info = [{
-        "game_id": pricing.game_id,
+        "platform": platform.name,
+        "title": game.title,
         "year": pricing.year,
         "price": pricing.price
     }]
@@ -503,10 +506,11 @@ def get_all_sales():
 
     for sale in results:
         game = session.query(Game).filter(Game.id == sale.game_id).first()
+        platform = session.query(Platform).filter(Platform.id == game.platform_id).first()
 
         if game:
             all_sales.append({
-                "id": game.id,
+                "platform": platform.name,
                 "title": game.title,
                 "year": sale.year,
                 "digital_sales": sale.digital_sales,
@@ -526,8 +530,10 @@ def get_single_game_sales(game_id):
         return jsonify(error="Sales information not found for the specified game and year"), 404
 
     game = session.query(Game).filter(Game.id == game_id).scalar()
+    platform = session.query(Platform).filter(Platform.id == game.platform_id).first()
 
     sales_info = [{
+        "platform": platform.name,
         "title": game.title,
         "year": sales.year,
         "digital_sales": sales.digital_sales,
