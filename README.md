@@ -2,7 +2,7 @@
 
 ## Overview
 
-APIVista is a gaming database API developed by Ishkhan Terzian for tracking and analyzing trends in video game sales, pricing, and information across PlayStation and Xbox platforms.
+APIVista is a gaming database API developed by Ishkhan Terzian for tracking and analyzing trends in video game sales, pricing, and information across multiple gaming platforms.
 
 ## Who?
 
@@ -60,24 +60,24 @@ APIVista is built using the Flask framework and utilizes SQLAlchemy for database
 1. Create a `.flaskenv` file and set the following environment variables:
 
     ```dotenv
-    FLASK_APP=app.py
-    FLASK_ENV=development
+    FLASK_APP=main
+    FLASK_DEBUG=True
     ```
 
-2. Run the Flask application:
+2. Run the Flask application using the bash terminal:
 
     ```bash
     flask run
     ```
 
-# API Endpoints
+## API Endpoints
 
-#### To access the APIVista endpoint: 
+### To access the APIVista endpoint: 
 [APIVista Endpoint](https://vista-9f3b58de3ca9.herokuapp.com//)
 
-#### For a more comprehensive look at APIVista, please take a look at the documentation:
+## For a more comprehensive look at APIVista, please take a look at the documentation:
 
-[Documentation](https://documenter.getpostman.com/view/26250844/2s9YysEN6t)
+### [Documentation](https://documenter.getpostman.com/view/26250844/2s9YysEN6t)
 
 # Testing with Postman
 
