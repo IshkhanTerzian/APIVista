@@ -59,6 +59,7 @@ class Pricing(Base):
     year = Column("year", Integer, primary_key=True)
     price = Column("price", Float)
 
+
     def __repr__(self):
         return f"Game_id: {self.game_id} Year: {self.year} Price: {self.price}"
 

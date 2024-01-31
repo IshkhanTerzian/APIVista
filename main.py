@@ -404,9 +404,11 @@ def get_all_pricing():
 
     for pricing in results:
         game = session.query(Game).filter(Game.id == pricing.game_id).first()
+        platform = session.query(Platform).filter(Platform.id == game.id).scalar()
 
         if game:
             all_prices.append({
+                "platform": platform.name,
                 "title": game.title,
                 "year": pricing.year,
                 "price": pricing.price
